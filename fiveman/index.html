@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="gbk">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <script src="//ossweb-img.qq.com/images/js/jquery/jquery-1.11.3.min.js"></script>
+    <script>
+        $(window).resize(function() {
+            var windowwidth=$(window).width();
+            var windowheight=$(window).height();
+//            console.log(windowwidth)
+            console.log(windowheight)
+            if( windowwidth < 1000){
+
+            }
+        })
+//        屏幕滚动事件
+        $(window).on('scroll',function(){
+            var a=window.scrollY;
+            $(".navbar-default").css(
+                {
+                    'opacity':0.7-(a/500),//改变透明度
+                    'height':(50-a/100)+'px'
+                }
+            )
+        })
+    </script>
+    <style>
+        /*1*/
+        .bg1{
+            background: url("./img/01.jpg") no-repeat 100% 100%;
+            background-size:cover;
+            text-align: center;
+        }
+        .h3-box{
+            background: rgba(0,0,0,0.7);
+            margin:20% auto;
+            opacity:0;
+        }
+        h3{
+            display: inline-block;
+            font-size: 50px;
+            color: #fff;
+            line-height: 218%;
+            text-shadow:-1px 0 gray,
+            0 1px gray,
+            1px 0 gray,
+            0 -1px gray;
+            animation-name: h3text;
+            transform-origin: center bottom;
+            animation:h3text 3s infinite;
+            opacity:0;
+        }
+        .h3-box p{
+            font-family: 'akkotxt3';
+            font-size: 26px;
+            color: gray;
+            text-shadow:-1px 0 #333,
+            0 1px #333,
+            1px 0 #333,
+            0 -1px #333;
+        }
+        .bg1-video{
+            width: 1920px;
+            height:auto;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        .fragment{
+            font-family: 'akkotxt3';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            z-index: 3;
+            font-size: 50px;
+            font-weight: bold;
+            color: #FFF;
+            opacity:0;
+        }
+        .fragment2{
+            top: 40%;
+            left:10%;
+        }
+        .fragment3{
+            top: 90%;
+            left:80%;
+        }
+        .fadein{
+            -webkit-animation: fadeIn 5s 19s forwards;
+            animation: fadeIn 5s 19s forwards;
+        }
+        .fadein2{
+            -webkit-animation: fadeIn 5s 21s forwards;
+            animation: fadeIn 5s 21s forwards;
+        }
+        .fadeInandout{
+            -webkit-animation: fadeInandout 5s 1s forwards;
+            animation: fadeInandout 5s 1s forwards;
+        }
+        .fragment1{
+            -webkit-animation: fadeInandout 5s 2s forwards;
+            animation: fadeInandout 5s 2s forwards;
+        }
+        .fragment2{
+            -webkit-animation: fadeInandout 5s 7s forwards;
+            animation: fadeInandout 5s 7s forwards;
+        }
+        .fragment3{
+            -webkit-animation: fadeInandout 5s 12s forwards;
+            animation: fadeInandout 5s 12s forwards;
+        }
+        /*2*/
+        .bg2{
+            background: url("./img/02.jpg") no-repeat 100% 100%;
+            background-size:cover;
+        }
+
+        /*3*/
+        .bg3{
+            background: url("./img/03.jpg") no-repeat 100% 100%;
+            background-size:cover;
+        }
+        /*4*/
+        .bg4{
+            background: url("./img/04.jpg") no-repeat 100% 100%;
+            background-size:cover;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="big-box" id="big-box">
+    <!--固定导航栏 滚动下去一定距离就隐藏-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="row">
+            <a class="col-lg-1 col-lg-offset-1  col-md-1 col-sm-3 col-xs-3" href="">注意事项</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">分离地址</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">上传</a>
+            <a class="col-lg-1 col-md-1 col-sm-3 col-xs-3" href="">测试地址</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">Music</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">Baidu</a>
+            <a class="col-lg-1 col-md-2 hidden-sm hidden-xs" href="">Can i use</a>
+            <a class="col-lg-1 col-md-2 hidden-sm hidden-xs" href="">PNG 压缩</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="./pages/codes.html">Code</a>
+            <a class="col-lg-1 col-md-1 col-sm-3 col-xs-3" href="">TGideas</a>
+            <!--下拉按钮-->
+            <div class="btn-group hidden-lg hidden-md col-sm-3 col-xs-3 mybtnstylebox">
+                <button type="button" class="btn btn-default dropdown-toggle mybtnstyle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">分离地址</a></li>
+                    <li><a href="#">上传</a></li>
+                    <li><a href="./pages/codes.html">Code</a></li>
+                    <li><a href="#">Can i use</a></li>
+                    <li><a href="#">PNG 压缩</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a href="#">Baidu</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--第一屏-->
+    <div class="bg1 bg">
+        <video class="bg1-video" src="./img/three.mp4" type="video/mp4" autoplay loop></video>
+        <p class="fragment fadeInandout fragment1">Even if you're busy <span class="glyphicon glyphicon-briefcase"></span></p>
+        <p class="fragment fadein fragment2">And remember to surround yourself with those you love most</p>
+        <p class="fragment fadein fragment3">See the world</p>
+        <div class="cover">
+            <div class="h3-box jumbotron fadein">
+                <h3 class="fadein fadein2">{{tit}}</h3>
+                <p>{{subtit}}</p>
+            </div>
+        </div>
+    </div>
+    <!--第二屏-->
+    <div class="bg2 bg">
+        <div class="cover">
+            <h3>Life is Jungle</h3>
+        </div>
+    </div>
+    <!--第三屏-->
+    <!--<div class="bg3 bg"></div>-->
+    <!--第四屏-->
+    <!--<div class="bg4 bg"></div>-->
+</div>
+<!--尾部-->
+<div class="bottom">
+    <p>众乐互娱科技研发部 版本1.0.2</p>
+    <p>重构小伙伴:Hisen、FFF、jiabao、akko、rafa</p>
+</div>
+
+</body>
+
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+
+</script>
+<script>
+    var app=new Vue({
+//        挂载点
+        el:"#big-box",
+//        用到的数据声明及赋值
+        data:{
+            tit:"重构注意事项",//主标题
+            subtit:"Refactoring considerations",//副标题
+        },
+//        方法
+        methods:{
+            whenmousemove:function () {
+
+            },
+//            滚动屏幕事件
+            handleScroll:function(){
+                var winY=window.scrollY;//获取到滚动的数据
+//                console.log(window.scrollY);
+                if(winY>100){
+//                    console.log(1);
+                }
+            }
+        },
+        mounted:function () {
+//            滚动屏幕调用滚屏事件
+            window.addEventListener('scroll', this.handleScroll);
+        }
+    })
+</script>
+</html>

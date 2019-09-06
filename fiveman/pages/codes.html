@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="gbk">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Code Fragment</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <script src="//ossweb-img.qq.com/images/js/jquery/jquery-1.11.3.min.js"></script>
+    <script>
+        //        屏幕滚动事件
+        $(window).on('scroll',function(){
+            var a=window.scrollY;
+            $(".navbar-default").css(
+                {
+                    'opacity':0.7-(a/500),//改变透明度
+                    'height':(50-a/100)+'px'
+                }
+            )
+        })
+    </script>
+    <style>
+        /*搜索框*/
+        .input-group{
+            width:50%;
+            margin: 30px auto;
+        }
+        /*代码展示*/
+        .panel-boxs{
+            width: 50%;
+            margin:0 auto;
+        }
+        .block{
+            position: relative;
+        }
+        .panel{
+            width: 100%;
+            margin: 10px 0;
+        }
+        .block-head p{
+            display: inline-block;
+        }
+        .panel-heading{
+            font-weight: bold;
+            font-size: 20px;
+            width: 358px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .block-operator,.block-upTime{
+            margin:0 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="big-box" id="page-box">
+    <!--固定导航栏 滚动下去一定距离就隐藏-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="row">
+            <a class="col-lg-1 col-lg-offset-1  col-md-1 col-sm-3 col-xs-3" href="">注意事项</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">分离地址</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">上传</a>
+            <a class="col-lg-1 col-md-1 col-sm-3 col-xs-3" href="">测试地址</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">Music</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">Baidu</a>
+            <a class="col-lg-1 col-md-2 hidden-sm hidden-xs" href="">Can i use</a>
+            <a class="col-lg-1 col-md-2 hidden-sm hidden-xs" href="">PNG 压缩</a>
+            <a class="col-lg-1 col-md-1 hidden-sm hidden-xs" href="">Code</a>
+            <a class="col-lg-1 col-md-1 col-sm-3 col-xs-3" href="">TGideas</a>
+            <!--下拉按钮-->
+            <div class="btn-group hidden-lg hidden-md col-sm-3 col-xs-3 mybtnstylebox">
+                <button type="button" class="btn btn-default dropdown-toggle mybtnstyle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">分离地址</a></li>
+                    <li><a href="#">上传</a></li>
+                    <li><a href="#">Code</a></li>
+                    <li><a href="#">Can i use</a></li>
+                    <li><a href="#">PNG 压缩</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Music</a></li>
+                    <li><a href="#">Baidu</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--搜索框-->
+        <div class="input-group col-lg-6">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+            </span>
+        </div>
+
+
+    <!--展示代码区-->
+    <div class="panel-boxs">
+
+    </div>
+</div>
+
+<!--尾部-->
+<div class="bottom">
+    <p>众乐互娱科技研发部 版本1.0.2</p>
+    <p>重构小伙伴:Hisen、FFF、jiabao、akko、rafa</p>
+</div>
+</body>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+    function getData() {
+        $.ajax({
+            type: 'GET',
+            contentType:'application/json',
+            url: '//120.76.153.149:8010/code_list',
+            success: function (json) {
+                if(json.success){
+                    var data=json.data;
+                    var _html ='';
+                    $.each(data,function (i,obj) {
+//                        _html += '<div class="block panel panel-default"><div class="block-head clearfix"><p class="block-item block-name panel-heading">'+obj.name+'</p><p class="block-item block-operator">'+obj.operator+'</p><p class="block-item block-upTime">'+obj.create_dt+'</p> </div> <div class="block-con"> <pre class="panel-body"><code class="'+obj.type+'">'+obj.content+'</code></pre></div></div>'
+                        _html += '<div class="block panel panel-default"><div class="block-head clearfix"><p class="block-item block-name panel-heading">'+obj.name+'</p><p class="block-item block-operator">'+obj.operator+'</p><p class="block-item block-upTime">'+obj.create_dt+'</p> </div> <div class="block-con"> <pre class="panel-body"><code class="'+obj.type+'">'+obj.content+'</code></pre></div></div>'
+                    });
+                    $('.panel-boxs').html('').append(_html);
+                    $('pre code').each(function(i, block) {
+                        hljs.highlightBlock(block);
+                    });
+                }else{
+                    alert(json.errMsg)
+                }
+            }
+        })
+    }
+    window.onload=function () {
+        getData();
+
+    };
+
+</script>
+</html>
